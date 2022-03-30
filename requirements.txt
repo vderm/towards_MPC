@@ -1,0 +1,8 @@
+numpy>=1.16.5
+matplotlib>=3.2.1
+pandas>=0.25.1
+lmfit>=1.0.0
+plotly>=5.6.0
+pandas_profiling
+cvxpy>=1.0.31
+streamlit
