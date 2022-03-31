@@ -1,11 +1,11 @@
 ---
-title: Project Impetus
+title: Introduction to MPC
 author: Vasken Dermardiros
-date: March 7, 2021
+date: March 31, 2022
 bibliography: library.bib
 header-includes: |
     \usepackage{tikz,pgfplots}
-abstract:  Document introduces the background and implementation of an MPC strategy designed to be used in rooftop unit (RTU) commercial applications. Underlying model is a grey-box physics-based model which is linear with optimization framework to be convex or non-convex when actions are binary. \newline Part of the literature presented herein comes from published or open-sourced documentations produced by myself. See [my list of publications](http://vderm.github.io) and [personal GitHub repo](https://github.com/vderm).
+abstract:  Document introduces the background and implementation of an MPC strategy designed to be used in rooftop unit (RTU) commercial or simple residential unit applications. Underlying model is a grey-box physics-based model which is linear with optimization framework to be convex or non-convex when actions are binary. \newline Part of the literature presented herein comes from published or open-sourced documentations produced by myself. See [my list of publications](http://vderm.github.io) and [personal GitHub repo](https://github.com/vderm).
 ---
 
 
@@ -473,7 +473,7 @@ The **reference repelling** could serve as a way to reduce consumption in a buil
 
 Constraints
 -----------
-I won't list all the constraints possible because you can be very creative and novel about how to formulate these. Check out the ones in Fatma Mtibaa's paper!
+I won't list all the constraints possible because you can be very creative and novel about how to formulate these. 
 
 + **Initial condition** :: $x(t=0) = a$
 
@@ -489,38 +489,10 @@ I won't list all the constraints possible because you can be very creative and n
 
 + **Rate of change (discrete)** :: moving_window$(a,\textrm{steps}) \leq a_{slew}$
 
-+ **Correction terms** :: see Fatma's paper equation 15! Can also be how Kalman filter's work.
-
 
 Stochastic Elements
 -------------------
 I've found the easiest way to handle stochasticity is to run MPC in a sample-based approach by sampling all the coefficients and forecasts and assuming them to be fixed for the MPC run. I would then run MPC many many times for that given timestep. You would then collect a lot of optimal control profiles and state trajectories. Might be a fun exercise for you to think about how to collapse those into one profile (since we don't live on infinite planes and can only do 1 thing. Yes yes I know, part of me also wanted to become a professional 1a yoyo master and travel the world demoing my sick yellow airplanes a.k.a. kamikaze 2 into a mannequin double slack combo).
-
-
-Polish: Residual Analysis and Fit
-=================================
-[DO LATER]
-
-+ Augmented Dickey-Fuller Tests
-+ Eigenvalue stability
-+ Spaghetti plots :D
-
-
-Interesting Areas to Explore
-============================
-+ Making this into an Algo with 0 user input! Specify building and go!
-  - Perhaps ask for budget (via slack variables) assigned to comfort, CO2, or other
-+ Link with RL
-  - MPC to generate experiences for DQN
-  - Model-based RL to use MPC model over learned model to perform rollouts, aka imagination or planning
-+ Gradient descent of training loss to ABC matrices to parameters
-+ Gradient descent of control loss to U vector to controllable inputs (needs a trick to get it working for binary controls)
-+ Bootstrap model by have parameters as distributions
-+ Model correction term
-  - Learned bias
-  - Kalman filter
-  - Online learning parameters
-+ Wrapped up as an RNN
 
 
 Appendix: Finite Difference Derivation
