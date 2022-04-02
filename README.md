@@ -6,6 +6,7 @@ File descriptions:
 + **01_statistical.ipynb**: load the data and apply basic statistics
 + **02_explore_data.ipynb**: explore data using domain expertise
 + **03_model.ipynb**: simple models to get a feel on how to do a fit
++ **04_mpc_cvx.ipynb**: simple and single MPC run with both an energy and power minimization case
 + **pandas-profile.html**: output from pandas_profile package
 + **requirements.txt**: Python packages required to run all the files
 + **Introduction_to_MPC.{md,pdf}**: intro to MPC using state-space formulation
